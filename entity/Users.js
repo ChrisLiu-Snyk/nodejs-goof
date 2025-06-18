@@ -29,3 +29,4 @@ async function getUserUnsafe1(req, res) {
     res.status(500).send("Error fetching user");
   }
 }
+
