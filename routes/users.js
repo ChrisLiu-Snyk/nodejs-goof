@@ -43,3 +43,15 @@ router.post('/', async (req, res, next) => {
     next();
   }
 })
+
+
+async function getUserUnsafe1(req, res) {
+  const userId = req.params.id; // User-supplied ID from URL
+  // DANGEROUS: Direct string concatenation
+  try {
+    const user = await db.query('SELECT * FROM users WHERE id = $1', [userId]); 
+    res.json(user);
+  } catch (error) {
+    res.status(500).send("Error fetching user");
+  }
+}
